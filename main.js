@@ -25,6 +25,10 @@ let vcon = vcan.getContext("2d");
 vcan.width = FIELD_W;
 vcan.height = FIELD_H;
 
+//カメラの位置
+let camera_x = 0;
+let camera_y = 0;
+
 //星の数
 let STAR_MAX = 300;
 
@@ -43,8 +47,13 @@ class Star{
     this.sz = rand(1,2);
   }
   draw(){
+    let x = this.x>>8;
+    let y = this.y>>8;
+    if( x<camera_x || x>=camera_x + SCREEN_W || y<camera_y || y>camera_y + SCREEN_H){
+    return;
+    }
     vcon.fillStyle = rand(0,2)!=0?"66f":"#8af";
-    vcon.fillRect(this.x>>8,this.y>>8, this.sz, this.sz);
+    vcon.fillRect(x,y, this.sz, this.sz);
 
   }
 
@@ -74,5 +83,5 @@ function gameLoop()
 
    //仮想画面から実際のキャンバスにコピー
 
-   con.drawImage( vcan, 0,0, SCREEN_W, SCREEN_H, 0,0, CANVAS_W, CANVAS_H);
+   con.drawImage( vcan, camera_x, camera_y , SCREEN_W, SCREEN_H, 0,0, CANVAS_W, CANVAS_H);
 }
