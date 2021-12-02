@@ -19,6 +19,12 @@ let con = can.getContext("2d");
 can.width = CANVAS_W;
 can.height = CANVAS_H;
 
+//フィールド（仮想画面)
+let vcan = document.createElement("canvas"); //画面に表示されないcanvasの作成
+let vcon = vcan.getContext("2d");
+vcan.width = FIELD_W;
+vcan.height = FIELD_H;
+
 //星の数
 let STAR_MAX = 300;
 
@@ -37,8 +43,8 @@ class Star{
     this.sz = rand(1,2);
   }
   draw(){
-    con.fillStyle = rand(0,2)!=0?"66f":"#8af";
-    con.fillRect(this.x>>8,this.y>>8, this.sz, this.sz);
+    vcon.fillStyle = rand(0,2)!=0?"66f":"#8af";
+    vcon.fillRect(this.x>>8,this.y>>8, this.sz, this.sz);
 
   }
 
@@ -62,7 +68,7 @@ function gameLoop()
    //移動の処理
    for(let i=0;i<STAR_MAX; i++)star[i].update();
    //描画の処理
-   con.fillStyle= "black";
-   con.fillRect(0,0,SCREEN_W, SCREEN_H);
+   vcon.fillStyle= "black";
+   vcon.fillRect(0,0,SCREEN_W, SCREEN_H);
    for(let i=0; i<STAR_MAX; i++)star[i].draw();
 }
