@@ -30,7 +30,7 @@ let camera_x = 0;
 let camera_y = 0;
 
 //星の実体
-let star[];
+let star=[];
 
 //星の数
 let STAR_MAX = 300;
