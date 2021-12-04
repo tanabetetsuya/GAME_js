@@ -29,6 +29,9 @@ vcan.height = FIELD_H;
 let camera_x = 0;
 let camera_y = 0;
 
+//星の実体
+let star[];
+
 //星の数
 let STAR_MAX = 300;
 
@@ -72,11 +75,6 @@ class Star{
     }
   }
 }
-let star=[];
-for(let i=0; i<STAR_MAX; i++)star[i] = new Star();
-
-
-setInterval( gameLoop, GAME_SPEED );
 
 function gameLoop()
 {
