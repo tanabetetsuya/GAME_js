@@ -32,6 +32,12 @@ let camera_y = 0;
 //星の数
 let STAR_MAX = 300;
 
+//ゲームの初期化
+function gameInit(){
+  for(let i=0;i<STAR_MAX;i++)star[i] = new Star();
+  setInterval( gameLoop, GAME_SPEED);
+}
+
 function rand(min, max)
 {
   return Math.floor(Math.random()*(max-min+1))+min;
