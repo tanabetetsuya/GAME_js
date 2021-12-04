@@ -91,3 +91,8 @@ function gameLoop()
 
    con.drawImage( vcan, camera_x, camera_y , SCREEN_W, SCREEN_H, 0,0, CANVAS_W, CANVAS_H);
 }
+
+//オンロードでゲーム開始
+window.onload = function(){
+  gameInit();
+}
